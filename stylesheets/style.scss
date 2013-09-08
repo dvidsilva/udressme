@@ -1,0 +1,258 @@
+@import 'normalize';
+body {
+    font-family: Helvetica, Arial, sans-serif;
+}
+@mixin clearfix {
+    &::after {
+        clear:both;
+        width:100%;
+        height:0px;
+        content:'';
+        display:block;
+    }
+}
+$red:#ff302e;
+$white:#fcfcfc;
+$gray:#7a7a7a;
+@mixin center {
+        width:1000px;
+        margin:0 auto;
+}
+#dresser {
+    @include clearfix;
+    aside {
+        float:left;
+        width:33%;
+    }
+    .left, .right {
+        div.piece {
+            height:250px;
+            width:164px;
+            background-image: url('http://placehold.it/164X250');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center top;
+        }
+    }
+
+}
+#catalogue {
+    @include clearfix;
+    width:100%;
+    text-align:center;
+    .thumbnails {
+        max-width:850px;
+        .thumbnail {
+            width:164px;
+            float:left;
+            height:200px;
+            position:relative;
+            img {
+                position:absolute;
+                z-index:0;
+            }
+            h3 {
+                position:relative;
+                bottom:0px;
+                left:0px;
+            }
+            button {
+                position:relative;
+                z-index:5;
+            }
+        }
+    }
+}
+
+
+
+body.home {
+    background: #67686a;
+    section {
+        @include center;
+    }
+    > header {
+        height:700px;
+        @include center;
+        background: url('../images/bg.jpg') no-repeat top center ;
+        position:relative;
+        &::before {
+            width: 100%;
+            height: 360px;
+            background: url('../images/patron.png') repeat-x ;
+            content: '';
+            display: block;
+            opacity: 1;
+            float: left;
+            top: 0px;
+            position: absolute;
+            right: 0px;
+        }
+        h1 {
+            margin:0;
+            padding:35px;
+            position:relative;
+            z-index:10;
+            a:hover {
+                opacity:0.6;
+            }
+        }
+        nav {
+            width:700px;
+            background:$white;
+            height:70px;
+            position:absolute;
+            right:70px;
+            top:59px;
+            z-index:10;
+            overflow:hidden;
+            padding-left:20px;
+            a {
+                display:block;
+                float:left;
+                padding:27px 20px;
+                font-size:15px;
+                font-weight:300;
+                color:$gray;
+                cursor:pointer;
+                &.active , &:hover {
+                    background:$red;
+                    color:white;
+                }
+            }
+        }
+        h2 {
+            position:absolute;
+            z-index:10;
+            right:60px;
+            width:370px;
+            bottom:380px;
+            text-transform:uppercase;
+            color:white;
+            text-shadow:1px 1px 0px transparentize($white, 0.3);
+            font-size:40px;
+            line-height:42px;
+            height:2em;
+            a {
+                color:inherit;
+                text-decoration:none;
+                &:hover {
+                    color:$gray;
+                }
+            }
+        }
+        aside {
+            position:absolute;
+            z-index:10;
+            height:340px;
+            width:370px;
+            background:$white url('../images/ricurita.png')  bottom center no-repeat;
+            bottom:0px;
+            right:70px;
+            overflow:hidden;
+            header {
+                background:white;
+                height:35px;
+                padding:0;
+                margin-top:3px;
+                a {
+                    color:$gray;
+                    text-transform:uppercase;
+                    font-weight:700;
+                    display:block;
+                    float:left;
+                    padding:4px 10px;
+                    font-size:27px;
+                    width:71px;
+                }
+                span {
+                    font-size:13px;
+                    line-height:14px;
+                    text-transform:uppercase;
+                    display:block;
+                    float:left;
+                    width:143px;
+                    padding:4px 0px 4px 50px;
+                    color:$gray;
+                }
+                button {
+                    background:$red;
+                    color:white;
+                    float:left;
+                    display:block;
+                    border:0;
+                    padding:10px 17px;
+                    &:hover {
+                        opacity:0.7;
+                    }
+                }
+            }
+        }
+    }
+    #dresser {
+        display:none;
+    }
+    #catalogue {
+        @include center;
+        background:white;
+        padding-bottom:30px;
+        .search {
+            height:30px;
+            padding:30px 60px;
+            input {
+                background:#f5f5f5;
+                border:1px solid #e2e2e2;
+                border-radius:3px;
+                padding:10px;
+                float:right;
+            }
+        }
+        .thumbnails {
+            width:100%;
+            display:block;
+            @include clearfix;
+            padding:0 2%;
+            margin:0;
+            max-width:100%;
+            .thumbnail {
+                margin:1%;
+                width:30%;
+                height:auto;
+                h3 {
+                    height:2.5em;
+                    color:$gray;
+                    overflow:hidden;
+                }
+                img {
+                    position:static;
+                    border:1px solid #dddddd;
+                    border-radius:3px;
+                }
+                .rights {
+                    display:none;
+                }
+                .lefts {
+                    background:red;
+                    color:white;
+                    border:0;
+                    font-size:13px;
+                    padding:4px 7px;
+                    text-transform:uppercase;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+body > footer {
+    background:$red;
+    width:100%;
+    height:20px;
+    color:white;
+    padding:30px 0;
+    text-align:center;
+    color:white;
+}

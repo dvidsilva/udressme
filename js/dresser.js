@@ -29,7 +29,7 @@ function changeCatalogue(list,loc,action){
 }
 function changeItem(product , side) {
     var p = products[product];
-    //console.log(p);
+    console.log(p);
     // inArray( value, array [, fromIndex ] )
 
     $.each(types, function(ind, val){

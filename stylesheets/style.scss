@@ -85,13 +85,30 @@ body.dresser {
                 img {
                     position:relative;
                     top:10px;
-                    &:hover {
+                    &:hover{
                         opacity:0.6;
                     }
                 }
             }
         }
-
+        .holderforbutton {
+            clear:both;
+        }
+        #loginButton, #submitButton {
+            clear:both;
+            padding:3px 12px;
+            background:$red;
+            color:$white;
+            margin:10px auto;
+            width:200px;
+            display:block;
+            border-radius:3px;
+            text-align:center;
+            text-transform:uppercase;
+            &:hover {
+                opacity:0.6;
+            }
+        }
     }
     #catalogue {
         @include clearfix;

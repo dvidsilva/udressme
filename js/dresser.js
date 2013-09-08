@@ -8,17 +8,19 @@ var devKey = "uid8641-23662879-69";
 
 var url = "http://api.shopstyle.com/api/v2/products?pid="+devKey+"&fts=red+dress&offset=0&limit=10&format=jsonp&callback=?";
 
-function changeCatalogue(list,loc){
+function changeCatalogue(list,loc,action){
     var n = '';
     loc = loc || 'try it';
+    action = action || 'dresser';
     i = 0;
     $.each(list.products, function(index, product){
         products[product.id] = product;
         n += "<div class='thumbnail'>";
         n += '<img src="'+product.image.sizes.Large.url+'" />';
         n += "<h3>" + product.name + "</h3>";
-        n += "<button class='lefts' data-product='"+product.id+"'>"+loc+"</button>";
+        n += "<button class='lefts' data-action='"+action+"' data-product='"+product.id+"'>"+loc+"</button>";
         n += "<button class='rights' data-product='"+product.id+"'>Right</button>";
+        n += "<a class='lefts' data-action='"+action+"' data-product='"+product.id+"' href='./dresser.html'>"+loc+"</a>";
         n += "</div>";
         i += 1;
     });
@@ -45,7 +47,7 @@ function queryShop(u,page, limit){
     u = u.replace(' ','+');
     page = page || 0;
     limit = limit || 9;
-    u =  "http://api.shopstyle.com/api/v2/products?pid="+devKey+"&fts="+u+"&offset="+page+"&limit="+ limit + "&format=jsonp&callback=?";
+    u =  "http://api.shopstyle.com/api/v2/products?pid="+devKey+"&fts="+u+"&offset="+page+"&limit="+ limit + "&cat=female&format=jsonp&callback=?";
     console.log(u);
     $.getJSON(u , function(data){
         changeCatalogue(data);
@@ -63,6 +65,12 @@ $(function(){
     });
     $(document).on('blur','.sbox', function(){
         queryShop($('.sbox').val());
+    });
+
+    $(".sbox").keypress(function(e) {
+        if(e.which == 13){
+            queryShop($('.sbox').val());
+        }
     });
 });
 

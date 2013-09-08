@@ -1,10 +1,10 @@
-<html>
+<html ng-app>
     <head>
         <title>UDressMe</title>
         <meta name='description' content='Get help with your clothing matches' />
         <link rel="stylesheet" href="stylesheets/style.css" type="text/css" media="screen" charset="utf-8">
     </head>
-<body class='home'>
+<body class='home' ng-controller="TodoCtrl"  >
 <header >
     <h1>
         <a href='./' rel='homepage'>
@@ -33,7 +33,12 @@
     <div class='search' >
         <input type='text' class='sbox' placeholder='search' />
     </div>
-    <aside class='thumbnails'>
+    <aside class='thumbnails' >
+        <div class='thumbnail'  ng-repeat="product in products" >
+            <img ng-src="{{product.image.sizes.Large.url}}" />
+            <h3>{{product.name}}</h3>
+            <a class='lefts' data-action='"+action+"' data-product='"+product.id+"' href='./dresser.html'>Try it</a>
+        </div>
     </aside>
 </section>
 
@@ -43,8 +48,9 @@
     </center>
 </footer>
 <script src='http://cssrefresh.frebsite.nl/js/cssrefresh.js' ></script>
-<script src='js/data.js' ></script>
 <script src='js/jquery.js' ></script>
+<script src='js/angular.min.js' ></script>
+<script src='js/data.js' ></script>
 <script src='js/dresser.js' ></script>
 </body>
 </html>

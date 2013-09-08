@@ -13,29 +13,30 @@ function changeCatalogue(list,loc,action){
     loc = loc || 'try it';
     action = action || 'dresser';
     i = 0;
+    products = {};
+    scope.products = {};
     $.each(list.products, function(index, product){
         products[product.id] = product;
-        n += "<div class='thumbnail'>";
-        n += '<img src="'+product.image.sizes.Large.url+'" />';
-        n += "<h3>" + product.name + "</h3>";
-        n += "<button class='lefts' data-action='"+action+"' data-product='"+product.id+"'>"+loc+"</button>";
-        n += "<button class='rights' data-product='"+product.id+"'>Right</button>";
-        n += "<a class='lefts' data-action='"+action+"' data-product='"+product.id+"' href='./dresser.html'>"+loc+"</a>";
-        n += "</div>";
+        scope.products[product.id] = product;
         i += 1;
     });
     if(i < 1 ) {
         n = "<h4>Sorry, we couldn't find any products matching this query</h4>";
     }
-    $('.thumbnails').html(n);
+//    $('.thumbnails').html(n);
+    scope.$apply();
+    
 }
 function changeItem(product , side) {
     var p = products[product];
     //console.log(p);
     // inArray( value, array [, fromIndex ] )
+
     $.each(types, function(ind, val){
         if(  $.inArray(p.categories[0].id, val) != -1 ) {
             $('[data-role="'+ind+'"].'+side).css('background-image', 'url('+p.image.sizes.Large.url+')' );
+        }else{
+            //$('[data-role="pants"].'+side).css('background-image', 'url('+p.image.sizes.Large.url+')' );            
         }
     });
     return true;
@@ -48,7 +49,7 @@ function queryShop(u,page, limit){
     page = page || 0;
     limit = limit || 9;
     u =  "http://api.shopstyle.com/api/v2/products?pid="+devKey+"&fts="+u+"&offset="+page+"&limit="+ limit + "&cat=female&format=jsonp&callback=?";
-    console.log(u);
+    //console.log(u);
     $.getJSON(u , function(data){
         changeCatalogue(data);
     });
@@ -56,6 +57,7 @@ function queryShop(u,page, limit){
 
 
 $(function(){
+    scope = angular.element('header').scope();
     queryShop('');
     $(document).on('click', '.lefts',  function() {
         changeItem($(this).data('product'), 'left');
@@ -76,4 +78,29 @@ $(function(){
 
 
 
+
+
+function TodoCtrl($scope) {
+    $scope.products = {};
+    $scope.model =  './images/modelin.png';
+    $scope.styleone = 'Style 1';
+    $scope.styletwo = 'Style 2';
+    $scope.selected = {};
+
+    $scope.changeItem = function(product , side) {
+    var p = products[product];
+    //console.log(p);
+    // inArray( value, array [, fromIndex ] )
+    $.each(types, function(ind, val){
+        if(  $.inArray(p.categories[0].id, val) != -1 ) {
+            $('[data-role="'+ind+'"].'+side).css('background-image', 'url('+p.image.sizes.Large.url+')' );
+        }
+    });
+    return true;
+}
+
+
+}
+$(function(){
+});
 

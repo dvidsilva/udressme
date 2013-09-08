@@ -1,28 +1,48 @@
-<html>
+<html ng-app>
     <head>
         <title>UDressMe</title>
         <meta name='description' content='Get help with your clothing matches' />
         <link rel="stylesheet" href="stylesheets/style.css" type="text/css" media="screen" charset="utf-8">
     </head>
+<body class='dresser' ng-controller="TodoCtrl" >
 <header >
-    UDRESSme
+    <h1>
+        <a href='./index.html' >
+            <img src='./images/logo.png' alt='never shop alone!'/>
+        </a>
+    </h1>
 </header>
 <section id='dresser' >
     <aside class='left'>
+        <h2><input ng-model='styleone' ></h2>
         <div class='shirt piece left' data-role='shirt' ></div>
+        <div class='pants piece left' data-role='pants' ></div>
+        <span><img src='./images/heart.png' > 15</span>
     </aside>
     <aside class='center'>
-        <img src='http://placehold.it/300X510' data-role='character' class='char'/>
+        <img ng-src='{{model}}' />
     </aside>
     <aside class='right'>
+        <h2><input ng-model='styletwo'></h2>
+        <div class='shirt piece right' data-role='shirt' ></div>
+        <div class='pants piece right' data-role='pants' ></div>
+        <span><img src='./images/heart.png' > 3</span>
     </aside>
 </section>
 
 <section id='catalogue' >
-    <aside class='categories'>
+    <aside class='categories'></aside>
+    <div class='wrap'>
+    <input ng-model='searchfor' class='sbox' type='text' placeholder='Search...' >
+    <aside class='thumbnails' >
+        <div class='thumbnail'  ng-repeat="product in products" >
+            <img ng-src="{{product.image.sizes.Large.url}}" />
+            <h3>{{product.name}}</h3>
+            <button class='lefts'  data-product='{{product.id}}'>{{styleone}}</button>
+            <button class='rights' data-product='{{product.id}}'>{{styletwo}}</button>
+        </div>
     </aside>
-    <aside class='thumbnails'>
-    </aside>
+    </div>
 </section>
 
 <footer>
@@ -30,8 +50,10 @@
         &copy; 2013 dvidsilva.com and friends
     </center>
 </footer>
-<script src='js/data.js' ></script>
+<script src='http://cssrefresh.frebsite.nl/js/cssrefresh.js' ></script>
 <script src='js/jquery.js' ></script>
+<script src='js/angular.min.js' ></script>
+<script src='js/data.js' ></script>
 <script src='js/dresser.js' ></script>
 </body>
 </html>

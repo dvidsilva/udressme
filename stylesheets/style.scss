@@ -18,47 +18,155 @@ $gray:#7a7a7a;
         width:1000px;
         margin:0 auto;
 }
-#dresser {
-    @include clearfix;
-    aside {
-        float:left;
-        width:33%;
-    }
-    .left, .right {
-        div.piece {
-            height:250px;
-            width:164px;
-            background-image: url('http://placehold.it/164X250');
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center top;
+body.dresser {
+    background:#e8e8e8;
+    margin:0;
+    header {
+        display:block;
+        width:100%;
+        padding:0;
+        margin:0;
+        background:white;
+        h1 {
+            margin:0;
+            padding:0;
+        }
+        a {
+            &:hover {
+                opacity:0.6;
+            }
+        }
+        img {
         }
     }
-
-}
-#catalogue {
-    @include clearfix;
-    width:100%;
-    text-align:center;
-    .thumbnails {
-        max-width:850px;
-        .thumbnail {
-            width:164px;
+    #dresser {
+        @include clearfix;
+        width:780px;
+        margin:0 auto;
+        background:#f2f2eb;
+        aside {
             float:left;
-            height:200px;
-            position:relative;
+            width:33%;
+        }
+        .center {
             img {
-                position:absolute;
-                z-index:0;
+                width:231px;
+                height:544px;
+                margin-top:30px;
             }
-            h3 {
-                position:relative;
-                bottom:0px;
-                left:0px;
+        }
+        .left, .right {
+            div.piece {
+                height:250px;
+                width:164px;
+                background-image: url('http://placehold.it/164X250');
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center top;
+                margin:0 auto;
+                margin-bottom:3px;
             }
-            button {
+            input {
+                background: red;
+                color: white;
+                border: 0;
+                border-radius: 3px;
+                width: 70%;
+                margin: 0 auto;
+                display: block;
+                text-align: center;
+            }
+            span {
+                display:block;
+                width:100%;
+                text-align:center;
+                height:45px;
+                margin-bottom:20px;
+                img {
+                    position:relative;
+                    top:10px;
+                    &:hover {
+                        opacity:0.6;
+                    }
+                }
+            }
+        }
+
+    }
+    #catalogue {
+        @include clearfix;
+        width:100%;
+        text-align:center;
+        div.wrap{
+            width: 780px;
+            height: 340px;
+            margin: 0 auto;
+            overflow: auto;
+            position:relative;
+            margin-bottom:30px;
+            input{
+                position: absolute;
+                top: 122;
+                border: 0;
+                left: -121px;
+                width: 300px;
+                padding: 20px;
+                transform: rotate(-90deg);
+                -ms-transform: rotate(-90deg);
+                -webkit-transform: rotate(-90deg);
+                z-index: 20;
+                background:$red;
+                color:white;
+            }
+        }
+        .thumbnails {
+            overflow-x: scroll;
+            overflow-y: hidden;
+            height: 300px;
+            white-space:nowrap;
+            margin-right:-40000px;
+            float:left;
+            .thumbnail {
+                width:200px;
+                float:left;
+                height:200px;
                 position:relative;
-                z-index:5;
+                margin: 2px;
+                cursor: pointer;
+                display:inline-block;
+                vertical-align:top;
+                img {
+                    border:1px solid $gray;
+                    border-radius:3px;
+                }
+                h3 {
+                    width:200px;
+                    height:3em;
+                    color:$gray;
+                    font-size:15px;
+                    white-space:normal;
+                }
+                a {
+                    display:none;
+                }
+                button {
+                    position: absolute;
+                    z-index: 5;
+                    height: 300px;
+                    top: 0;
+                    left: 0;
+                    width: 50%;
+                    background: $red;
+                    border: 0;
+                    color: white;
+                    opacity:0;
+                    &:last-child{
+                        left:50%;
+                    }
+                    &:hover {
+                        opacity:0.6;
+                    }
+                }
             }
         }
     }
@@ -218,6 +326,8 @@ body.home {
                 margin:1%;
                 width:30%;
                 height:auto;
+                float:left;
+                text-align:center;
                 h3 {
                     height:2.5em;
                     color:$gray;

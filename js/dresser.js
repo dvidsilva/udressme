@@ -6,7 +6,7 @@ head[0].appendChild(node);
 */
 var devKey = "uid8641-23662879-69";
 
-var url = "http://api.shopstyle.com/api/v2/products?pid="+devKey+"&fts=red+dress&offset=0&limit=10&format=jsonp&callback=?";
+var url = "https://api.shopstyle.com/api/v2/products?pid="+devKey+"&fts=red+dress&offset=0&limit=10&format=jsonp&callback=?";
 
 function changeCatalogue(list,loc,action){
     var n = '';
@@ -49,7 +49,7 @@ function queryShop(u,page, limit){
     u = u.replace(' ','+');
     page = page || 0;
     limit = limit || 9;
-    u =  "http://api.shopstyle.com/api/v2/products?pid="+devKey+"&fts="+u+"&offset="+page+"&limit="+ limit + "&cat=female&format=jsonp&callback=?";
+    u =  "https://api.shopstyle.com/api/v2/products?pid="+devKey+"&fts="+u+"&offset="+page+"&limit="+ limit + "&cat=female&format=jsonp&callback=?";
     //console.log(u);
     $.getJSON(u , function(data){
         changeCatalogue(data);
